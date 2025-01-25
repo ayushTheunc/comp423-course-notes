@@ -12,6 +12,11 @@ Before starting, ensure you have the following installed on your system:
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/)
 - [Dev Containers extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
+!!! note
+    Ensure all prerequisites are properly installed before proceeding. Missing any of these tools may lead to issues later.
+
+---
+
 ## Step-by-Step Instructions
 
 ### Step 1: Create a New Project Directory
@@ -29,6 +34,11 @@ Before starting, ensure you have the following installed on your system:
    git commit -m "Initial commit with README"
    ```
 
+!!! tip
+    Use meaningful commit messages to help keep your repository organized and easy to navigate.
+
+---
+
 ### Step 2: Create a Remote Repository and Link It
 
 1. Go to [GitHub](https://github.com/) and create a new repository named `rust-project`.
@@ -42,6 +52,11 @@ Before starting, ensure you have the following installed on your system:
    git branch -M main
    git push -u origin main
    ```
+
+!!! warning
+    Be cautious when pasting your GitHub repository URL. Make sure it is correct to avoid linking to the wrong repository.
+
+---
 
 ### Step 3: Configure the Development Container in VS Code
 
@@ -65,11 +80,10 @@ Before starting, ensure you have the following installed on your system:
    git commit -m "Add dev container configuration"
    ```
 
-#### Explanation of the `devcontainer.json` file
+!!! info
+    The `devcontainer.json` file specifies the configuration for your development environment, including the base image (`rust:latest`) and the VS Code extension for Rust.
 
-- **`name`**: Specifies the name of the dev container, making it easy to identify in VS Code.
-- **`image`**: Defines the base Docker image used for the development environment. Here, it specifies a Rust development image provided by Microsoft.
-- **`customizations`**: Customizes VS Code settings for the container. The example enables the Rust extension for better Rust language support.
+---
 
 ### Step 4: Open the Dev Container in VS Code
 
@@ -78,6 +92,11 @@ Before starting, ensure you have the following installed on your system:
    - **Mac**: Press `Cmd+Shift+P`.
 2. Select **Reopen in Container**.
 3. Wait for the container to build and initialize.
+
+!!! warning
+    Ensure Docker is running before reopening in the container. Otherwise, VS Code will not be able to build the container.
+
+---
 
 ### Step 5: Initialize a Rust Project in the Dev Container
 
@@ -89,39 +108,56 @@ Before starting, ensure you have the following installed on your system:
 
 2. Initialize a new Rust module:
    ```bash
-    cargo new helloCOMP423 --bin --vcs none
+   cargo new helloCOMP423 --bin --vcs none
    ```
 
-3. Inside the helloWorldCOMP423 directory, modify the file `main.rs` with the following content:
+!!! note
+    The `--bin` flag creates a binary (executable) Rust project, and `--vcs none` prevents Cargo from initializing a new Git repository.
+
+3. Inside the `helloCOMP423` directory, modify the file `main.rs` with the following content:
    ```rust
    fn main() {
        println!("Hello, COMP423!");
    }
    ```
 
+!!! tip
+    Use the Rust `println!` macro to print text to the console. The `!` signifies it is a macro, not a regular function.
+
+---
 
 ### Step 6: Compile and Run the Project in the Dev Container
 
 1. Compile the project:
    ```bash
-    cargo build
-
+   cargo build
    ```
-   This generates a binary file named `helloWorldCOMP423`. The `cargo build` command is similar to the `gcc` command in C programming (as used in COMP211). Like `gcc`, `carbo build` compiles your source code into a executable file which doesn't need a Rust Environment to run. 
+   This generates a binary file in the `target/debug/` directory. The `cargo build` command is similar to the `gcc` command in C programming (as used in COMP211). Like `gcc`, `cargo build` compiles your source code into an executable file that does not require the Rust environment to run.
 
-2. Run and Compile the compiled binary directly:
+!!! success
+    If the compilation is successful, you’ll find the compiled binary in the `target/debug/` directory.
+
+2. Run the compiled binary directly:
    ```bash
-   cargo run
+   ./target/debug/helloCOMP423
    ```
    You should see:
    ```
    Hello COMP423
    ```
-   Unlike cargo build, cargo run both compiles and runs the main.rs file. If you just want to run the file after it is compiled by cargo build, 
-   use ./target/debug/hello_world, assuming you are in the same directory as the main.rs file. 
 
+3. Alternatively, use the following command to compile and run in one step:
+   ```bash
+   cargo run
+   ```
 
-   **Key Difference**: `cargo build` creates a reusable binary file, whereas `cargo run` executes the program directly without saving a binary.
+!!! question
+    Why use `cargo build` over `cargo run`?  
+    Use `cargo build` if you plan to run the binary multiple times. It saves time by avoiding repeated compilation.
+
+   **Key Difference**: `cargo build` creates a reusable binary file, whereas `cargo run` compiles and executes the program in a single step.
+
+---
 
 ### Step 7: Push Updates to GitHub from VS Code
 
@@ -136,8 +172,14 @@ Before starting, ensure you have the following installed on your system:
    git push
    ```
 
+!!! tip
+    Regularly push your changes to keep your GitHub repository up to date.
+
+---
+
 ## Final Steps
 
 Congratulations! Your Rust project is now set up with a dev container and linked to a GitHub repository.
 
-For additional help, consult the [official Rust documentation](https://www.rust-lang.org/learn).
+!!! info
+    For additional help, consult the [official Rust documentation](https://www.rust-lang.org/learn).
